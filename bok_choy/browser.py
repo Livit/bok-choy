@@ -18,10 +18,11 @@ try:
         NeedleIe as Ie,
         NeedleOpera as Opera,
         NeedlePhantomJS as PhantomJS,
-        NeedleSafari as Safari
+        NeedleSafari as Safari,
+        NeedleRemote as Remote
     )
 except ImportError:
-    from selenium.webdriver import Chrome, Firefox, Ie, Opera, PhantomJS, Safari
+    from selenium.webdriver import Chrome, Firefox, Ie, Opera, PhantomJS, Safari, Remote
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -460,7 +461,7 @@ def _remote_browser_class(env_vars, tags=None):
     if caps['browserName'] == 'firefox':
         browser_kwargs['browser_profile'] = _firefox_profile()
 
-    return webdriver.Remote, browser_args, browser_kwargs
+    return Remote, browser_args, browser_kwargs
 
 
 def _proxy_kwargs(browser_name, proxy, browser_kwargs={}):  # pylint: disable=dangerous-default-value
